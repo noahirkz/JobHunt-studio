@@ -1,0 +1,34 @@
+{
+  "leads": [
+    {
+      "title": "Field Service Technician",
+      "company": "Lumen Elevators AB",
+      "location": "Stockholm, travel within the region",
+      "url": "https://example.com/jobs/field-service-technician",
+      "deadline": "2026-11-30",
+      "type": "Full time · permanent",
+      "source": "Example board",
+      "adText": "Field Service Technician — Lumen Elevators AB (fictional example ad)\nStockholm region · Full time · Permanent · Service van provided\n\nYou will:\n- Carry out planned maintenance on lifts and escalators\n- Find and fix faults on call-outs, often with customers waiting\n- Log every job in our service app\n\nWe are looking for:\n- Experience in maintenance, automation or technical service\n- A structured way of finding faults\n- Driving licence (B)\n- Swedish and English\n\nWe train you on our equipment. Last day to apply: 30 November."
+    },
+    {
+      "title": "NOC Technician",
+      "company": "Skären Telecom",
+      "location": "Solna",
+      "url": "https://example.com/jobs/noc-technician",
+      "deadline": "Rolling",
+      "type": "Full time · shifts",
+      "source": "Example board",
+      "adText": "NOC Technician — Skären Telecom (fictional example ad)\nSolna · Full time · 24/7 shift rotation\n\nYou will:\n- Monitor the network and react to alarms\n- Open, follow up and close incidents within SLA\n- Escalate to second-line engineers with clear notes\n- Write handovers between shifts\n\nWe are looking for:\n- Experience from support, operations or a NOC\n- Networking basics (TCP/IP, DNS)\n- Calm under pressure, clear in writing\n- Fluent Swedish and English\n\nSelection is continuous."
+    },
+    {
+      "title": "Junior Automation Engineer (trainee)",
+      "company": "Brovik Automation",
+      "location": "Södertälje",
+      "url": "https://example.com/jobs/junior-automation-engineer",
+      "deadline": "2026-12-15",
+      "type": "Trainee programme · 12 months",
+      "source": "Example board",
+      "adText": "Junior Automation Engineer, trainee — Brovik Automation (fictional example ad)\nSödertälje · 12-month paid trainee programme\n\nYou'll rotate between PLC programming, commissioning at customer sites and our support desk.\n\nWe are looking for:\n- Ongoing or finished studies in engineering, IT or automation\n- Hands-on experience with industrial equipment (a plus)\n- Some programming (any language)\n- Swedish and English\n\nApply with CV and a short letter about why automation. Deadline 15 December."
+    }
+  ]
+}

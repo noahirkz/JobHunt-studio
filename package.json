@@ -1,0 +1,15 @@
+{
+  "name": "jobhunt-studio",
+  "version": "1.0.0",
+  "description": "Score job ads against your CV, then tailor an honest CV and cover letter with Claude or any LLM. Runs in your browser.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test",
+    "check:privacy": "node scripts/privacy-check.mjs",
+    "check": "node --test && node scripts/privacy-check.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- Scripts only from this site. Model calls may go to any HTTPS endpoint you configure, or to a model on your own computer. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Jobhunt Studio</title>
+<meta name="description" content="Score job ads against your CV, then tailor an honest CV and cover letter with Claude or any LLM. Runs in your browser.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script src="vendor/jszip/jszip.min.js" defer></script>
+<script type="module" src="src/main.js"></script>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <a class="logo" href="#" data-act="view" data-v="leads" aria-label="Jobhunt Studio, go to leads">
+    <svg viewBox="0 0 30 30" aria-hidden="true"><path d="M11 8V6.5A2.5 2.5 0 0 1 13.5 4h3A2.5 2.5 0 0 1 19 6.5V8" fill="none" stroke="var(--accent)" stroke-width="2.4"/><rect x="2.5" y="8" width="25" height="19" rx="4" fill="var(--accent)"/><path d="M10 17.5l3.4 3.4L20.5 13.8" fill="none" stroke="var(--accent-ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Jobhunt Studio<small>find · score · tailor · apply</small></span>
+  </a>
+  <nav class="views" aria-label="Views">
+    <button type="button" data-act="view" data-v="leads" id="v-leads">Leads</button>
+    <button type="button" data-act="view" data-v="find" id="v-find">Find leads</button>
+    <button type="button" data-act="view" data-v="cv" id="v-cv">My CV</button>
+    <button type="button" data-act="view" data-v="settings" id="v-settings">Settings</button>
+  </nav>
+  <a class="live" id="live" href="#" data-act="view" data-v="settings"><i></i><span>No model connected</span></a>
+  <button type="button" class="btn primary" data-act="add-open">+ Add a job ad</button>
+</div></header>
+<div class="wrap">
+  <main id="app"><noscript>Jobhunt Studio needs JavaScript.</noscript></main>
+  <footer class="footer">Jobhunt Studio · open source (MIT) · your data stays in this browser · <a href="https://github.com/noahirkz/jobhunt-studio" target="_blank" rel="noopener">Source</a></footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

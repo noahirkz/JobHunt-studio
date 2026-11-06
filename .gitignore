@@ -1,0 +1,38 @@
+# ---- Personal files: never commit these ----
+# Your filled-in agent instructions, profile and letters
+workflow/agent.md
+workflow/profile.yaml
+workflow/profile.yml
+workflow/profile.json
+workflow/letter*.yaml
+workflow/letter*.yml
+workflow/letter*.json
+!workflow/examples/
+# Anything you put in private/, plus agent output and generated documents
+private/
+reports/
+output/
+# Real CVs, letters and spreadsheets, wherever they are
+*.docx
+*.doc
+*.pdf
+*.xlsx
+*.xls
+*.odt
+*.pages
+# Your personal words for the privacy check
+.privacy-denylist
+# Secrets
+.env
+.env.*
+
+# ---- Tool and OS clutter ----
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+~$*
+.~lock.*
+*.tmp

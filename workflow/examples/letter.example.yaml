@@ -1,0 +1,22 @@
+# Example cover letter for workflow/scripts/build_cover_letter.py — fictional.
+# Copy to workflow/letter.yaml (git-ignored). Name and contact line come from your profile file.
+
+date: 2026-11-06            # optional; defaults to today
+recipient: |                # optional
+  Brovik Automation
+  Södertälje
+subject: "Application: Junior Automation Engineer (trainee)"
+greeting: Hello,
+paragraphs:
+  - >-
+    I'm applying for the Junior Automation Engineer trainee programme. For three years I ran and
+    fixed conveyor, sorter and shuttle systems in a 24/7 warehouse, and automation is the work I
+    want to grow into.
+  - >-
+    Before that I spent three years in IT support, owning tickets from first report to confirmed
+    fix. I'm now studying for a B.Sc. in Information Technology and script routine work in Bash and
+    Python.
+  - >-
+    I'd be glad to tell you more in an interview.
+closing: Best regards,
+signature: Alex Berg   # optional; defaults to the name in your profile

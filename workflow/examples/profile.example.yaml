@@ -1,0 +1,51 @@
+# Example CV profile for workflow/scripts/build_cv.py — a fictional person.
+# Copy to workflow/profile.yaml (git-ignored) and fill in your own details.
+# Same shape as the tailored CV in the web app, so either can be rendered by the script.
+
+name: ALEX BERG
+headline: IT Support Technician | Operations & Automation
+contact: Stockholm, Sweden | +46 70 000 00 00 | alex.berg@example.com | github.com/example
+summary: >-
+  IT support technician with three years of 1st/2nd line support, followed by three years
+  running and fixing automated equipment in a 24/7 warehouse. Studying for a B.Sc. in
+  Information Technology online. Fluent in Swedish and English.
+
+sections:
+  - title: Core qualifications
+    rows:
+      - label: IT support
+        text: 1st/2nd line, onboarding/offboarding, Microsoft 365, Google Workspace, Windows, macOS
+      - label: Operations
+        text: Alarm response, fault-finding, maintenance logs, shift handovers
+      - label: Technical
+        text: Linux command line, networking basics (TCP/IP, DNS, DHCP), Bash, Python (basic)
+
+  - title: Experience
+    entries:
+      - role: Automation Operator
+        org: Nordfrakt Logistics
+        place: Södertälje, Sweden
+        dates: Mar 2022 – Aug 2025
+        bullets:
+          - Ran and monitored conveyor, sorter and shuttle systems in a warehouse operating 24/7.
+          - Responded to alarms and stoppages; found the cause and restarted lines with minimal downtime.
+          - Logged every fault and fix for clean shift handovers.
+      - role: IT Support Technician
+        org: Brightdesk IT
+        place: Stockholm
+        dates: 2019 – 2022
+        bullets:
+          - 1st and 2nd line support for about 300 users at small and mid-size client companies.
+          - Set up laptops and phones for new hires; handled offboarding and access removal.
+
+  - title: Education
+    entries:
+      - role: B.Sc. Information Technology
+        org: Open University (online)
+        dates: Expected 2027
+        bullets: []
+
+  - title: Languages
+    rows:
+      - label: ""
+        text: Swedish (native), English (fluent)

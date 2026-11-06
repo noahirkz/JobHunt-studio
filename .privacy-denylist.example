@@ -1,0 +1,5 @@
+# Copy to .privacy-denylist (git-ignored) and list words that must never be published:
+# your name, phone number, street address, personal email, past employers you don't want listed.
+# One per line; matching is case-insensitive. `npm run check:privacy` fails if any appear.
+Your Name
+your.personal@email
