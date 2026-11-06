@@ -167,3 +167,4 @@ npm run check           # both (also runs in CI)
 MIT — see [LICENSE](LICENSE). Bundled: [JSZip](https://stuk.github.io/jszip/) (MIT or GPLv3, used under MIT) and the [Figtree](https://github.com/erikdkennedy/figtree) font (SIL Open Font License, see `assets/fonts/OFL.txt`).
 
 Jobhunt Studio is a helper, not a recruiter. Read every CV and letter before you send it.
+If you want to test the Demo, here the link "https://noahirkz.github.io/JobHunt-studio/." be cautious with the linking your API in the browser. hope it will help like it did for me. JAH BLESS!!
