@@ -49,7 +49,7 @@ Open <http://localhost:8080>. (Opening `index.html` directly from disk won't wor
 
 1. **Settings** → pick a provider, paste your API key, press **Test connection**.
 2. Press **Start with my own data** (this clears the fictional demo person).
-3. **My CV** → paste or upload your CV (.docx or .txt). Fill in **Facts and limits**.
+3. **My CV** → paste or upload your CV (.pdf, .docx, .odt or .txt). Fill in **Facts and limits**.
 4. **+ Add a job ad** → paste the full ad → **Analyze & score** → **Tailor CV** → **Write cover letter**.
 
 ---
@@ -139,11 +139,13 @@ src/
   prompts.js          the four prompts + reply checks
   llm.js              calls Anthropic / OpenAI-compatible APIs, parses JSON
   store.js            saved state, backups, imports
-  documents.js        plain text and .docx export, .docx import
+  documents.js        plain text and .docx export, .docx and .odt import
+  pdf.js              PDF text extraction (loads vendor/pdfjs only when a PDF is uploaded)
   util.js             small helpers
   demo.js             fictional demo data
   views/              one file per screen (leads, find, cv, settings)
-vendor/jszip/         JSZip 3.10.1 (MIT), for Word files
+vendor/jszip/         JSZip 3.10.1 (MIT), for Word and OpenDocument files
+vendor/pdfjs/         pdf.js 6.5.438 legacy build and cmaps (Apache-2.0, see vendor/pdfjs/LICENSE), for PDF CVs
 assets/               icon and Figtree font (SIL OFL)
 workflow/             agent instructions, examples, Python document scripts
 scripts/              local server, privacy check
@@ -164,7 +166,7 @@ npm run check           # both (also runs in CI)
 
 ## Credits and licence
 
-MIT — see [LICENSE](LICENSE). Bundled: [JSZip](https://stuk.github.io/jszip/) (MIT or GPLv3, used under MIT) and the [Figtree](https://github.com/erikdkennedy/figtree) font (SIL Open Font License, see `assets/fonts/OFL.txt`).
+MIT — see [LICENSE](LICENSE). Bundled: [JSZip](https://stuk.github.io/jszip/) (MIT or GPLv3, used under MIT), [pdf.js](https://mozilla.github.io/pdf.js/) (Apache-2.0) and the [Figtree](https://github.com/erikdkennedy/figtree) font (SIL Open Font License, see `assets/fonts/OFL.txt`).
 
 Jobhunt Studio is a helper, not a recruiter. Read every CV and letter before you send it.
 If you want to test the Demo, here the link "https://noahirkz.github.io/JobHunt-studio/." be cautious with the linking your API in the browser. hope it will help like it did for me. JAH BLESS!!

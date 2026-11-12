@@ -15,8 +15,8 @@ export function viewCV(S, ui, active) {
           <span class="t">${esc(p.name)}${p.id === active.id ? `<span class="badge">In use</span>` : ""}</span>
           <span class="f">${esc(p.file || "Added by you")}</span></button>`).join("")}</div>
         <div class="upload">
-          <span>Add a CV from a Word (.docx) or text file, or start from a blank one.</span>
-          <div class="row-actions"><label class="btn small" for="cv-file">Upload CV</label><input id="cv-file" type="file" accept=".docx,.txt,.md"><button type="button" class="btn small ghost" data-act="profile-new">Blank profile</button></div>
+          <span>Add a CV from a PDF, Word (.docx), OpenDocument (.odt) or text file, or start from a blank one.</span>
+          <div class="row-actions"><label class="btn small" for="cv-file">Upload CV</label><input id="cv-file" type="file" accept=".pdf,.docx,.odt,.txt,.md"><button type="button" class="btn small ghost" data-act="profile-new">Blank profile</button></div>
         </div>
       </div>
       <div class="card stack">

@@ -145,6 +145,75 @@ export async function docxToText(file, JSZip = globalThis.JSZip) {
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
+const ODF_OFFICE = "urn:oasis:names:tc:opendocument:xmlns:office:1.0";
+const ODF_TEXT = "urn:oasis:names:tc:opendocument:xmlns:text:1.0";
+
+/** Read the text of an uploaded OpenDocument text (.odt) file (browser only: needs DOMParser). */
+export async function odtToText(file, JSZip = globalThis.JSZip) {
+  if (!JSZip) throw new Error("nozip");
+  const zip = await JSZip.loadAsync(file);
+  const part = zip.file("content.xml");
+  if (!part) throw new Error("notodt");
+  const doc = new DOMParser().parseFromString(await part.async("string"), "application/xml");
+  const body = doc.getElementsByTagNameNS(ODF_OFFICE, "text")[0];
+  if (!body) throw new Error("notodt");
+
+  const lines = [];
+  let line = "";
+  let listDepth = 0;
+  const flush = () => {
+    const t = line.replace(/[ \t]+/g, " ").trim();
+    if (t) lines.push((listDepth > 0 ? "- " : "") + t);
+    line = "";
+  };
+  const walk = (n) => {
+    for (const c of Array.from(n.childNodes)) {
+      if (c.nodeType === 3) {
+        line += c.textContent;
+        continue;
+      }
+      if (c.nodeType !== 1 || c.namespaceURI !== ODF_TEXT) continue;
+      switch (c.localName) {
+        case "s":
+          line += " ".repeat(Number(c.getAttributeNS(ODF_TEXT, "c")) || 1);
+          break;
+        case "tab":
+          line += " ";
+          break;
+        case "line-break":
+          line += "\n";
+          break;
+        case "annotation":
+        case "tracked-changes":
+          break; // comments and deleted text are not part of the CV
+        case "list":
+          flush();
+          listDepth++;
+          walk(c);
+          flush();
+          listDepth--;
+          break;
+        case "p":
+        case "h":
+        case "section":
+        case "table":
+        case "table-row":
+        case "table-cell":
+        case "list-item":
+          flush();
+          walk(c);
+          flush();
+          break;
+        default:
+          walk(c); // spans, links, bookmarks and other inline wrappers
+      }
+    }
+  };
+  walk(body);
+  flush();
+  return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 /** Trigger a browser download for a Blob. */
 export function saveBlob(blob, filename) {
   const url = URL.createObjectURL(blob);

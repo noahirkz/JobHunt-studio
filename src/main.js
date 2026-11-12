@@ -5,7 +5,7 @@ import { loadState, saveState, freshState, loadKey, saveKey, keyIsRemembered, ex
 import { STORE_KEY, KEY_STORE_KEY } from "./config.js";
 import { askJSON, notReadyReason, errorMessage, resolveSettings } from "./llm.js";
 import { analyzePrompt, tailorPrompt, letterPrompt, industriesPrompt, checkAnalysis, checkTailor, checkLetter, checkIndustries } from "./prompts.js";
-import { cvText, letterText, cvDocXml, letterDocXml, buildDocx, docxToText, saveBlob } from "./documents.js";
+import { cvText, letterText, cvDocXml, letterDocXml, buildDocx, docxToText, odtToText, saveBlob } from "./documents.js";
 import { esc, slug, todayISO, uid, clampScore, hostOf, safeUrl } from "./util.js";
 import { viewLeads } from "./views/leads.js";
 import { viewFind, boardTable, parseQueries } from "./views/find.js";
@@ -510,6 +510,36 @@ function addProfile(name, text, file) {
   toast("Profile added");
 }
 
+/** Read the text of an uploaded CV. PDF support loads pdf.js only when a PDF is picked. */
+async function readCVFile(f) {
+  const ext = (f.name.match(/\.([^.]+)$/) || [])[1]?.toLowerCase() || "";
+  if (ext === "pdf") return (await import("./pdf.js")).pdfToText(f);
+  if (ext === "docx") return docxToText(f);
+  if (ext === "odt") return odtToText(f);
+  if (ext === "txt" || ext === "md") {
+    const text = await f.text();
+    // A PDF or Word file renamed to .txt is binary: refuse it instead of saving garbage as the CV.
+    if (text.includes("\u0000")) throw new Error("binary");
+    return text;
+  }
+  throw new Error("unsupported");
+}
+
+function cvReadMessage(err) {
+  const messages = {
+    nozip: "The Word/OpenDocument reader didn't load. Paste the text into a blank profile instead.",
+    password: "That PDF is password-protected. Remove the password, or paste the text instead.",
+    scanned: "That PDF has no text layer (it's a scan). Paste the text, or use a text-based PDF.",
+    notpdf: "That doesn't look like a valid PDF.",
+    notdocx: "That doesn't look like a valid .docx file.",
+    notodt: "That doesn't look like a valid .odt file.",
+    binary: "That file isn't plain text. Upload a PDF, Word (.docx), OpenDocument (.odt) or text file instead.",
+    unsupported: "That file type isn't supported. Upload a PDF, Word (.docx), OpenDocument (.odt) or text file, or paste the text.",
+    empty: "That file has no text in it.",
+  };
+  return messages[err && err.message] || "Couldn't read that file. Try a PDF, .docx, .odt or .txt file.";
+}
+
 document.addEventListener("change", async (e) => {
   const id = e.target.id;
   if (id === "ws-profile") {
@@ -534,11 +564,11 @@ document.addEventListener("change", async (e) => {
   e.target.value = "";
   if (id === "cv-file") {
     try {
-      const text = /\.docx$/i.test(f.name) ? await docxToText(f) : await f.text();
+      const text = await readCVFile(f);
       if (!text.trim()) throw new Error("empty");
       addProfile(f.name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim().slice(0, 60) || "Uploaded CV", text, f.name);
     } catch (err) {
-      toast(err && err.message === "nozip" ? "The Word reader didn't load. Paste the text into a blank profile instead." : "Couldn't read that file. Try a .docx or .txt file.");
+      toast(cvReadMessage(err));
     }
   } else if (id === "leads-file") {
     try {
